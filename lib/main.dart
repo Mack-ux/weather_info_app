@@ -45,7 +45,7 @@ class _WeatherPageState extends State<WeatherPage> {
 
     final random = Random();
     
-    // Generate a random temperature between 15°C and 30°C
+    // Generate a  random temperature between 15°C and 30°C
     final temp = 15 + random.nextInt(16); // 15 to 30°C
 
     // List of weather conditions
