@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,13 +29,33 @@ class _WeatherPageState extends State<WeatherPage> {
   String _temperature = '';
   String _weatherCondition = '';
 
+  // Function to simulate fetching weather data
   void _fetchWeather() {
-    // Here you would typically make an API call to fetch weather data.
+    final city = _cityController.text;
+
+    if (city.isEmpty) {
+      // If the user hasn't entered a city, show an error
+      setState(() {
+        _cityName = '';
+        _temperature = '';
+        _weatherCondition = 'Please enter a city name.';
+      });
+      return;
+    }
+
+    final random = Random();
+    
+    // Generate a random temperature between 15°C and 30°C
+    final temp = 15 + random.nextInt(16); // 15 to 30°C
+
+    // List of weather conditions
+    const weatherConditions = ['Sunny', 'Cloudy', 'Rainy'];
+    final condition = weatherConditions[random.nextInt(weatherConditions.length)];
+
     setState(() {
-      // For demonstration, setting static data as placeholders
-      _cityName = _cityController.text;
-      _temperature = '22°C'; // Placeholder temperature
-      _weatherCondition = 'Clear Sky'; // Placeholder weather condition
+      _cityName = city;
+      _temperature = '$temp°C';
+      _weatherCondition = condition;
     });
   }
 
